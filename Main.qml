@@ -17,10 +17,6 @@ Rectangle {
     property string currentUsername: userModel.data(userModel.index(currentUsersIndex, 0), realNameRole) ||
                                      userModel.data(userModel.index(currentUsersIndex, 0), usernameRole)
     property string currentSession: sessionModel.data(sessionModel.index(currentSessionsIndex, 0), sessionNameRole)
-    property string passwordFontSize: config.passwordFontSize || 96
-    property string usersFontSize: config.usersFontSize || 48
-    property string sessionsFontSize: config.sessionsFontSize || 24
-
 
     function usersCycleSelectPrev() {
         if (currentUsersIndex - 1 < 0) {
@@ -171,7 +167,6 @@ Rectangle {
             id: background
             visible: true
             anchors.fill: parent
-            color: config.backgroundFill || "transparent"
             Image {
                 id: image
                 anchors.fill: parent
@@ -186,7 +181,7 @@ Rectangle {
                 z: 3
                 border.color: "#ff3117"
                 border.width: 0
-                color: "transparent"
+                color: config.backgroundFill || "transparent"
                 Behavior on border.width {
                     SequentialAnimation {
                         id: animateBorder
@@ -202,10 +197,10 @@ Rectangle {
         TextInput {
             id: passwordInput
             width: parent.width/2
-            height: 200/96*passwordFontSize
-            font.pointSize: passwordFontSize
+            height: 200
+            font.pointSize: 72
             font.bold: true
-            font.letterSpacing: 20/96*passwordFontSize
+            font.letterSpacing: 20
             anchors {
                 verticalCenter: parent.verticalCenter
                 horizontalCenter: parent.horizontalCenter
@@ -225,7 +220,7 @@ Rectangle {
             }
             cursorDelegate: Rectangle {
                 id: passwordInputCursor
-                width: 10/96*passwordFontSize
+                width: 10
                 onHeightChanged: height = passwordInput.height/2
                 anchors.verticalCenter: parent.verticalCenter
                 color: (() => {
@@ -262,8 +257,8 @@ Rectangle {
                     source: passwordInputCursor
                     anchors.fill: passwordInputCursor
                     color: passwordInputCursor.color
-                    samples: 2*radius+1
-                    radius: 4/96*passwordFontSize
+                    samples: 9
+                    radius: 4
                 }
             }
         }
@@ -271,7 +266,7 @@ Rectangle {
             id: username
             text: currentUsername
             visible: false
-            width: mainFrame.width/2.5/48*usersFontSize
+            width: mainFrame.width/2.5
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 bottom: passwordInput.top
@@ -289,7 +284,7 @@ Rectangle {
             id: sessionName
             text: currentSession
             visible: false
-            width: mainFrame.width/2.5/24*sessionsFontSize
+            width: mainFrame.width/2.5
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 bottom: parent.bottom

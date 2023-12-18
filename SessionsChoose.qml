@@ -6,12 +6,12 @@ Item {
     property string text: ""
     property string prevText: "<"
     property string nextText: ">"
-    property int fontPointSize: usersFontSize
+    property int fontPointSize: 24
     property string fontFamily: "monospace"
     signal prevClicked()
     signal nextClicked()
     Text {
-        id: username
+        id: sessionName
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         font.pointSize: root.fontPointSize
@@ -45,7 +45,7 @@ Item {
         id: nextButton
         text: root.nextText
         color: textColor
-        font.pointSize: 48
+        font.pointSize: root.fontPointSize
         font.family: "monospace"
         anchors {
             right: parent.right
